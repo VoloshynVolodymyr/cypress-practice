@@ -23,3 +23,24 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import RegistrationForm from "../POM/forms/RegistrationForm";
+import HomePage from "../POM/pages/HomePage";
+
+Cypress.Commands.add("signUpUser", () => {
+  const userName = Cypress.env("userName");
+  const userLastName = Cypress.env("userLastName");
+  const email = `vva1979+${Date.now()}@ukr.net`;
+  const userPassword = Cypress.env("userPassword");
+  const userRePassword = Cypress.env("userRePassword");
+
+  HomePage.visit();
+  HomePage.signUpButtonClick();
+
+  RegistrationForm.submitFormWithCredentials(
+    userName,
+    userLastName,
+    email,
+    userPassword,
+    userRePassword
+  );
+});
