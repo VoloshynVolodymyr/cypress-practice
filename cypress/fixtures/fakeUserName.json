@@ -1,0 +1,9 @@
+{
+    "status": "ok",
+    "data": {
+        "userId": 172244,
+        "photoFilename": "default-user.png",
+        "name": "Polar",
+        "lastName": "Bear"
+    }
+}
