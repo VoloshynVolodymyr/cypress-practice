@@ -44,3 +44,25 @@ Cypress.Commands.add("signUpUser", () => {
     userRePassword
   );
 });
+
+export function loginAndGetToken() {
+  const user = {
+    email: "vva1979@ukr.net",
+    password: "Vovan1979",
+    remember: false,
+  };
+
+  return cy
+    .request("POST", "https://qauto.forstudy.space/api/auth/signin", user)
+    .then((response) => {
+      const cookieHeader = response.headers["set-cookie"];
+      if (!cookieHeader) {
+        throw new Error("Set-Cookie header not found in response");
+      }
+
+      const token = cookieHeader[0].match(/sid=[^;]+/)[0];
+      return token;
+    });
+}
+
+
